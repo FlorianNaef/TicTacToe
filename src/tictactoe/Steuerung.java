@@ -9,6 +9,8 @@ public class Steuerung {
 	public String komandoEinlesen() {
 		System.out.printf("Komando: ");
 		String komando = myObj.nextLine();
+		System.out.printf("\n");
+		
 		return komando;		
 	}
 }

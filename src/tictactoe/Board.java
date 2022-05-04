@@ -3,81 +3,95 @@ package tictactoe;
 /**
 */
 public class Board {
-	private String a=" ", b=" ", c=" ", d=" ", e=" ", f=" ", g=" ", h=" ", i=" ";
-
 	
-	public void makemove(boolean who, String where) {
-		// who -> 0 = Spieler 1   1 = Spieler 2
-		
-		if(who == false) {
-			switch(where) {
-			case "a":
-				a = "x";
+	
+	private String fields[] = {" "," "," "," "," "," "," "," "," "};
+
+	boolean spieler = false;
+
+	public void setSpieler(boolean spieler) {
+		this.spieler = spieler;
+	}
+	
+	public String[] getFields() {
+		return fields;
+	}
+	
+	
+
+	public void makemove(String where) {
+		// who -> 0 = Spieler 1 1 = Spieler 2
+
+		if (spieler == false) {
+			switch (where) {
+			case "A0":
+				fields[0] = "x";
 				break;
-			case "b":
-				b = "x";
+			case "B0":
+				fields[1] = "x";
 				break;
-			case "c":
-				c = "x";
+			case "C0":
+				fields[2] = "x";
 				break;
-			case "d":
-				d = "x";
+			case "A1":
+				fields[3] = "x";
 				break;
-			case "e":
-				e = "x";
+			case "B1":
+				fields[4] = "x";
 				break;
-			case "f":
-				f = "x";
+			case "C1":
+				fields[5] = "x";
 				break;
-			case "g":
-				g = "x";
+			case "A2":
+				fields[6] = "x";
 				break;
-			case "h":
-				h = "x";
+			case "B2":
+				fields[7] = "x";
 				break;
-			case "i":
-				i = "x";
+			case "C2":
+				fields[8] = "x";
 				break;
 			}
-		}else {
-			switch(where) {
-			case "a":
-				a = "o";
+		} else {
+			switch (where) {
+			case "A0":
+				fields[0] = "o";
 				break;
-			case "b":
-				b = "o";
+			case "B0":
+				fields[1] = "o";
 				break;
-			case "c":
-				c = "o";
+			case "C0":
+				fields[2] = "o";
 				break;
-			case "d":
-				d = "o";
+			case "A1":
+				fields[3] = "o";
 				break;
-			case "e":
-				e = "o";
+			case "B1":
+				fields[4] = "o";
 				break;
-			case "f":
-				f = "o";
+			case "C1":
+				fields[5] = "o";
 				break;
-			case "g":
-				g = "o";
+			case "A2":
+				fields[6] = "o";
 				break;
-			case "h":
-				h = "o";
+			case "B2":
+				fields[7] = "o";
 				break;
-			case "i":
-				i = "o";
+			case "C2":
+				fields[8] = "o";
 				break;
 			}
 		}
+		spieler = !spieler;
 	}
-	
+
 	public void printBoard() {
 		System.out.printf("  A   B   C \n");
-		System.out.printf("0 %s | %s | %s \n", a, b, c);
+		System.out.printf("0 %s | %s | %s \n", fields[0], fields[1], fields[2]);
 		System.out.printf(" -- + - + -- \n");
-		System.out.printf("1 %s | %s | %s \n", d, e, f);
+		System.out.printf("1 %s | %s | %s \n", fields[3], fields[4], fields[5]);
 		System.out.printf(" -- + - + -- \n");
-		System.out.printf("2 %s | %s | %s \n", g, h, i);
+		System.out.printf("2 %s | %s | %s \n", fields[6], fields[7], fields[8]);
 	}
 }
