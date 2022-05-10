@@ -3,95 +3,62 @@ package tictactoe;
 /**
 */
 public class Board {
-	
-	
-	private String fields[] = {" "," "," "," "," "," "," "," "," "};
 
+	private Field[] fields;
 	boolean spieler = false;
+
+	public Board() {
+		fields = new Field[9];
+		for (int i = 0; i <= 8; i++) {
+			fields[i] = new Field();
+		}
+
+	}
 
 	public void setSpieler(boolean spieler) {
 		this.spieler = spieler;
 	}
-	
-	public String[] getFields() {
+
+	public Field[] getFields() {
 		return fields;
 	}
-	
-	
 
-	public void makemove(String where) {
-		// who -> 0 = Spieler 1 1 = Spieler 2
+	public boolean makemove(String where, Player p) {
 
-		if (spieler == false) {
-			switch (where) {
-			case "A0":
-				fields[0] = "x";
-				break;
-			case "B0":
-				fields[1] = "x";
-				break;
-			case "C0":
-				fields[2] = "x";
-				break;
-			case "A1":
-				fields[3] = "x";
-				break;
-			case "B1":
-				fields[4] = "x";
-				break;
-			case "C1":
-				fields[5] = "x";
-				break;
-			case "A2":
-				fields[6] = "x";
-				break;
-			case "B2":
-				fields[7] = "x";
-				break;
-			case "C2":
-				fields[8] = "x";
-				break;
-			}
-		} else {
-			switch (where) {
-			case "A0":
-				fields[0] = "o";
-				break;
-			case "B0":
-				fields[1] = "o";
-				break;
-			case "C0":
-				fields[2] = "o";
-				break;
-			case "A1":
-				fields[3] = "o";
-				break;
-			case "B1":
-				fields[4] = "o";
-				break;
-			case "C1":
-				fields[5] = "o";
-				break;
-			case "A2":
-				fields[6] = "o";
-				break;
-			case "B2":
-				fields[7] = "o";
-				break;
-			case "C2":
-				fields[8] = "o";
-				break;
-			}
+		switch (where) {
+		case "A0":
+			return fields[0].setUnsetValue(p.getSymbol());
+		case "B0":
+			return fields[1].setUnsetValue(p.getSymbol());
+		case "C0":
+			return fields[2].setUnsetValue(p.getSymbol());
+		case "A1":
+			return fields[3].setUnsetValue(p.getSymbol());
+		case "B1":
+			return fields[4].setUnsetValue(p.getSymbol());
+		case "C1":
+			return fields[5].setUnsetValue(p.getSymbol());
+		case "A2":
+			return fields[6].setUnsetValue(p.getSymbol());
+		case "B2":
+			return fields[7].setUnsetValue(p.getSymbol());
+		case "C2":
+			return fields[8].setUnsetValue(p.getSymbol());
+
+		default:
+			System.out.printf("Try again with a valid value\n");
+			return false;
 		}
-		spieler = !spieler;
+
 	}
 
-	public void printBoard() {
+	public void printBoard(Player p) {
 		System.out.printf("  A   B   C \n");
 		System.out.printf("0 %s | %s | %s \n", fields[0], fields[1], fields[2]);
 		System.out.printf(" -- + - + -- \n");
 		System.out.printf("1 %s | %s | %s \n", fields[3], fields[4], fields[5]);
 		System.out.printf(" -- + - + -- \n");
 		System.out.printf("2 %s | %s | %s \n", fields[6], fields[7], fields[8]);
+		System.out.printf("Spieler %s | %s\n\n", p.getNumber(), p.getSymbol());
 	}
 }

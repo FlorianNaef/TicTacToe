@@ -2,15 +2,15 @@ package tictactoe;
 
 import java.util.Scanner;
 
-public class Steuerung {
-	
+public class Control {
+
 	Scanner myObj = new Scanner(System.in);
-	
-	public String komandoEinlesen() {
+
+	public String readCommand() {
 		System.out.printf("Komando: ");
-		String komando = myObj.nextLine();
+		String command = myObj.nextLine();
 		System.out.printf("\n");
-		
-		return komando;		
+		return command.toUpperCase();
 	}
+
 }
