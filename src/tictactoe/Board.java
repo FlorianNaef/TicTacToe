@@ -1,28 +1,30 @@
 package tictactoe;
 
 /**
-*/
+ * @author Florian Naef
+ * @author Luka Steric
+ * @author Filip Vrlec
+ *
+ *         A board needs fields
+ */
 public class Board {
-
+	// Attributes
 	private Field[] fields;
-	boolean spieler = false;
 
+	// Constructor
 	public Board() {
 		fields = new Field[9];
 		for (int i = 0; i <= 8; i++) {
 			fields[i] = new Field();
 		}
-
 	}
 
-	public void setSpieler(boolean spieler) {
-		this.spieler = spieler;
-	}
-
+	// Getters and setters
 	public Field[] getFields() {
 		return fields;
 	}
 
+	// Methods
 	public boolean makemove(String where, Player p) {
 
 		switch (where) {
@@ -49,7 +51,6 @@ public class Board {
 			System.out.printf("Try again with a valid value\n");
 			return false;
 		}
-
 	}
 
 	public void printBoard(Player p) {
@@ -59,6 +60,7 @@ public class Board {
 		System.out.printf("1 %s | %s | %s \n", fields[3], fields[4], fields[5]);
 		System.out.printf(" -- + - + -- \n");
 		System.out.printf("2 %s | %s | %s \n", fields[6], fields[7], fields[8]);
-		System.out.printf("Spieler %s | %s\n\n", p.getNumber(), p.getSymbol());
+		System.out.printf(" -- + - + -- \n");
+		System.out.printf("\nSpieler %s | %s\n\n", p.getNumber(), p.getSymbol());
 	}
 }

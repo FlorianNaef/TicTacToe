@@ -1,12 +1,19 @@
 package tictactoe;
 
+/**
+ * @author Filip Vrlec
+ *
+ */
 public class Field {
+	// Attributes
 	private String value = " ";
 
+	// Getter
 	public String getValue() {
 		return this.value;
 	}
 
+	// Methods
 	public boolean checkIfValueSet() {
 		if (this.value == " ") {
 			return false;

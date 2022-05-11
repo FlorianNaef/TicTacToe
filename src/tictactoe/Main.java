@@ -7,10 +7,9 @@ package tictactoe;
  * @author Luka Steric
  * @author Filip Vrlec
  * 
- * 
  */
 public class Main {
-
+	// Methods
 	/**
 	 * 
 	 * @param args
@@ -25,7 +24,7 @@ public class Main {
 		Player p2 = new Player("O", 2);
 		boolean b1;
 		boolean b2;
-
+		
 		do {
 			board.printBoard(p1);
 			do {
@@ -36,8 +35,7 @@ public class Main {
 			do {
 				b2 = board.makemove(ctrl.readCommand(), p2);
 			} while (!b2);
-			
-		} while (true);
 
+		} while (true);
 	}
 }
