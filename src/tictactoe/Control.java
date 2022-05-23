@@ -12,8 +12,8 @@ public class Control {
 	private Scanner myObj = new Scanner(System.in);
 
 	// Methods
-	public String readCommand() {
-		System.out.printf("Komando: ");
+	public String read(String s) {
+		System.out.printf("%s: ", s);
 		String command = myObj.nextLine();
 		System.out.printf("\n");
 		return command.toUpperCase();

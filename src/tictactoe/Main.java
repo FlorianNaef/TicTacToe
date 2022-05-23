@@ -1,5 +1,7 @@
 package tictactoe;
 
+import tictactoe.memento.History;
+
 /**
  * @version 1.0
  * 
@@ -18,24 +20,31 @@ public class Main {
 	 *             it.
 	 */
 	public static void main(String[] args) {
+		Player[] p = new Player[2];
+		p[0] = new Player("X", 1);
+		p[1] = new Player("O", 2);
 		Board board = new Board();
 		Control ctrl = new Control();
-		Player p1 = new Player("X", 1);
-		Player p2 = new Player("O", 2);
-		boolean b1;
-		boolean b2;
-		
+		GameLogic gl;
+		History history = new History();
+		history.push(board.createMemento());
+
 		do {
-			board.printBoard(p1);
-			do {
-				b1 = board.makemove(ctrl.readCommand(), p1);
-			} while (!b1);
+			gl = new GameLogic(board, p[0], p[1]);
+			for (int i = 0; i < 2; i++) {
+				board = gl.playerMoves(board, p[i], ctrl);
+				history.push(board.createMemento());
 
-			board.printBoard(p2);
-			do {
-				b2 = board.makemove(ctrl.readCommand(), p2);
-			} while (!b2);
-
+				if (gl.checkVertical() != "nobodyV" || gl.checkHorizontal() != "nobodyH"
+						|| gl.checkDiagonal() != "nobodyD") {
+					System.out.printf("Player %s won the game", p[i].getNumber());
+					break;
+				}
+			}
+			if (gl.checkVertical() != "nobodyV" || gl.checkHorizontal() != "nobodyH"
+					|| gl.checkDiagonal() != "nobodyD") {
+				break;
+			}
 		} while (true);
 	}
 }

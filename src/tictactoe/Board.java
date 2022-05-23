@@ -1,5 +1,7 @@
 package tictactoe;
 
+import tictactoe.memento.BoardState;
+
 /**
  * @author Florian Naef
  * @author Luka Steric
@@ -22,6 +24,10 @@ public class Board {
 	// Getters and setters
 	public Field[] getFields() {
 		return fields;
+	}
+
+	public void setFields(int i, Field f) {
+		this.fields[i] = f;
 	}
 
 	// Methods
@@ -62,5 +68,13 @@ public class Board {
 		System.out.printf("2 %s | %s | %s \n", fields[6], fields[7], fields[8]);
 		System.out.printf(" -- + - + -- \n");
 		System.out.printf("\nSpieler %s | %s\n\n", p.getNumber(), p.getSymbol());
+	}
+
+	public BoardState createMemento() {
+		return new BoardState(this.fields);
+	}
+
+	public void restore(BoardState state) {
+		this.fields = state.getFields();
 	}
 }
