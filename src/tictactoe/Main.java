@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.util.Scanner;
+
 import tictactoe.memento.History;
 
 /**
@@ -12,6 +14,11 @@ import tictactoe.memento.History;
  */
 public class Main {
 	// Methods
+
+	/*
+	 * Todo: Game over variabel neustart einfügen visibilität
+	 */
+
 	/**
 	 * 
 	 * @param args
@@ -20,34 +27,65 @@ public class Main {
 	 *             it.
 	 */
 	public static void main(String[] args) {
-		Player[] p = new Player[2];
-		p[0] = new Player("X", 1);
-		p[1] = new Player("O", 2);
-		Board board = new Board();
-		Control ctrl = new Control();
-		GameLogic gl;
-		History history = new History();
-		history.push(board.createMemento());
+
+		Scanner myObj = new Scanner(System.in);
+		boolean gameloop = false;
 
 		do {
-			gl = new GameLogic(board, p[0], p[1]);
-			for (int i = 0; i < 2; i++) {
 
-				board = gl.playerMoves(board, p[i], ctrl);
-				board.restore(history.pop());
-				
-				
+			Player[] p = new Player[2];
+			p[0] = new Player("X", 1);
+			p[1] = new Player("O", 2);
+			Board board = new Board();
+			Control ctrl = new Control();
+			GameLogic gl;
+			Timer timer = new Timer();
+			History history = new History();
+			history.push(board.createMemento());
+			boolean gameover = false;
 
-				if (gl.checkVertical() != "nobodyV" || gl.checkHorizontal() != "nobodyH"
-						|| gl.checkDiagonal() != "nobodyD") {
-					System.out.printf("Player %s won the game", p[i].getNumber());
-					break;
+			timer.startTime();
+			do {
+
+				gl = new GameLogic(board, p[0], p[1]);
+				for (int i = 0; i < 2; i++) {
+
+					p[i].startTime();
+					board = gl.playerMoves(board, p[i], ctrl);
+					p[i].stopTime();
+					// board.restore(history.pop());
+
+					if (gl.checkVertical() != "nobodyV" || gl.checkHorizontal() != "nobodyH"
+							|| gl.checkDiagonal() != "nobodyD") {
+						board.printBoard(p[i]);
+						System.out.printf("Player %s won the game\n", p[i].getNumber());
+						gameover = true;
+						break;
+					}
 				}
-			}
-			if (gl.checkVertical() != "nobodyV" || gl.checkHorizontal() != "nobodyH"
-					|| gl.checkDiagonal() != "nobodyD") {
+
+			} while (!gameover);
+			
+			timer.stopTime(true);
+			
+			System.out.printf("\n Enter 'New' for new Game, 'End' to exit the game or 'Undo' to undo your last move\n");
+			String command = myObj.nextLine();
+			System.out.printf("\n");
+			command.toUpperCase();
+			switch (command) {
+			case "NEW":
+				gameloop = true;
+				break;
+			case "END":
+				gameloop = false;
+				break;
+			case "UNDO":
+				// undo;
+				gameover = false;
 				break;
 			}
-		} while (true);
+
+		} while (gameloop);
+
 	}
 }

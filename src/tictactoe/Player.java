@@ -2,17 +2,18 @@ package tictactoe;
 
 /**
  * 
- * @author filip
+ * @author Filip Vrlec, Florian Naef
  * @version 1.0
  * 
- *          The player has a certain symbol, the player number and the amount of
- *          takes will be tracked.
+ *          The player has a certain symbol, the player number and the tmie will
+ *          be tracked.
  */
 public class Player {
 	// Attributes
 	private String symbol;
 	private int number;
 	private int take;
+	private Timer timer = new Timer();
 
 	// Constructor
 	/**
@@ -46,4 +47,13 @@ public class Player {
 	public int getTake() {
 		return this.take;
 	}
+
+	public void startTime() {
+		timer.startTime();
+	}
+
+	public void stopTime() {
+		timer.stopTime(false);
+	}
+
 }
