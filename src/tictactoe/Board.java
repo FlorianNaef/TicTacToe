@@ -34,7 +34,7 @@ public class Board {
 	public Field[] getFields() {
 		return fields;
 	}
-	
+
 	/**
 	 * @return the whole array of fields
 	 */
@@ -102,17 +102,17 @@ public class Board {
 		System.out.printf(" -- + - + -- \n");
 		System.out.printf("\nSpieler %s | %s\n\n", p.getNumber(), p.getSymbol());
 	}
-	
+
 	/**
-	* @return the current state of the board
-	*/
+	 * @return the current state of the board
+	 */
 	public BoardState createMemento() {
 		return new BoardState(this.fields);
 	}
 
 	/**
-	* @param state uses the state to jump back (undo)
-	*/
+	 * @param state uses the state to jump back (undo)
+	 */
 	public void restore(BoardState state) {
 		this.fields = state.getFields();
 	}
