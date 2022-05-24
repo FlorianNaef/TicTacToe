@@ -65,9 +65,9 @@ public class Main {
 				}
 
 			} while (!gameover);
-			
+
 			timer.stopTime(true);
-			
+
 			System.out.printf("\n Enter 'New' for new Game, 'End' to exit the game or 'Undo' to undo your last move\n");
 			String command = myObj.nextLine();
 			System.out.printf("\n");
