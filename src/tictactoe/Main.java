@@ -32,8 +32,11 @@ public class Main {
 		do {
 			gl = new GameLogic(board, p[0], p[1]);
 			for (int i = 0; i < 2; i++) {
+
 				board = gl.playerMoves(board, p[i], ctrl);
-				history.push(board.createMemento());
+				board.restore(history.pop());
+				
+				
 
 				if (gl.checkVertical() != "nobodyV" || gl.checkHorizontal() != "nobodyH"
 						|| gl.checkDiagonal() != "nobodyD") {

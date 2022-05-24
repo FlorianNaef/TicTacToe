@@ -20,5 +20,4 @@ public class BoardState {
 	public void setFields(Field[] fields) {
 		this.fields = fields;
 	}
-
 }

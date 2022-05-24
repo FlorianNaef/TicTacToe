@@ -3,6 +3,7 @@ package tictactoe;
 /**
  * @author Filip Vrlec
  *
+ *
  */
 public class Field {
 	// Attributes

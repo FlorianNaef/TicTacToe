@@ -12,9 +12,12 @@ public class History {
 	}
 
 	public BoardState pop() {
-		int lastIndex = states.size() - 1;
-		BoardState lastState = states.get(lastIndex);
+		int lastIndex;
+		BoardState lastState;
+		lastIndex = states.size() - 1;
+		lastState = states.get(lastIndex);
 		states.remove(lastState);
+		System.out.printf("popo '%s'", lastIndex);
 		return lastState;
 	}
 }
