@@ -10,6 +10,15 @@ import tictactoe.Board;
 import tictactoe.Field;
 import tictactoe.Player;
 
+/**
+ * @version 1.0
+ * 
+ * @author Florian Naef
+ * @author Filip Vrlec
+ * 
+ * This class contains the test-functions for the Board class
+ * 
+ */
 class BoardTest {
 	Board b;
 	Player[] p;

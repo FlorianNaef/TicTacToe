@@ -10,6 +10,15 @@ import tictactoe.Board;
 import tictactoe.GameLogic;
 import tictactoe.Player;
 
+/**
+ * @version 1.0
+ * 
+ * @author Florian Naef
+ * @author Filip Vrlec
+ * 
+ * This class contains the test-functions for the GameLogic class
+ * 
+ */
 class GameLogicTest {
 	Board b;
 	Player[] p;

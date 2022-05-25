@@ -8,6 +8,15 @@ import org.junit.jupiter.api.Test;
 
 import tictactoe.Field;
 
+/**
+ * @version 1.0
+ * 
+ * @author Florian Naef
+ * @author Filip Vrlec
+ * 
+ * This class contains the test-functions for the Field class
+ * 
+ */
 class FieldTest {
 	Field f;
 

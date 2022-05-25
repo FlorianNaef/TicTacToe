@@ -6,6 +6,7 @@ import java.util.Scanner;
 /**
  * 
  * @author Filip Vrlec
+ * @author Florian Naef
  *
  *         This class will check if the game is solved or not and contains a few
  *         more logic related methods.

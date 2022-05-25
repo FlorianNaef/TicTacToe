@@ -3,9 +3,7 @@ package tictactoe;
 /**
  * @author Filip Vrlec
  *
- *         This class covers the field. A field is a spot in the board and has
- *         only one attribute; the value, which can be either blank (" ") or set
- *         ("X" or "O").
+ * This class covers the field. A field is a spot in the board and has only one attribute; the value, which can be either blank (" ") or set ("X" or "O").
  */
 public class Field {
 	// Attributes
