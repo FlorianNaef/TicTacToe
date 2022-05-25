@@ -42,9 +42,9 @@ public class Timer {
 		seconds = (int) (duration.getSeconds() % 60);
 
 		if (mode) {
-			System.out.printf("Total duration: Minutes: %s ,Seconds: %s %n", minutes, seconds);
+			System.out.printf("Total duration: Minutes: %s, Seconds: %s %n", minutes, seconds);
 		} else {
-			System.out.printf("Move duration: Minutes: %s ,Seconds: %s %n", minutes, seconds);
+			System.out.printf("Move duration: Minutes: %s, Seconds: %s %n", minutes, seconds);
 		}
 
 		// return ("Minutes: " + minutes + ", Seconds: " + seconds);

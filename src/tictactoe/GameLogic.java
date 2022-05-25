@@ -1,8 +1,7 @@
 package tictactoe;
 
 import java.util.ArrayList;
-
-import tictactoe.memento.History;
+import java.util.Scanner;
 
 /**
  * 
@@ -15,7 +14,7 @@ public class GameLogic {
 	// Attributes
 	private Board b;
 	private ArrayList<Player> ps;
-	private Field[] f;
+	private ArrayList<Field> fs = new ArrayList<Field>();;
 
 	// Constructor
 	/**
@@ -28,7 +27,7 @@ public class GameLogic {
 		ps = new ArrayList<Player>();
 		ps.add(p1);
 		ps.add(p2);
-		this.f = b.getFields();
+		this.fs = b.getFieldsL();
 	}
 
 	// Methods
@@ -49,6 +48,36 @@ public class GameLogic {
 		} while (!b);
 		return board;
 	}
+	
+	
+	int cool = 0;
+	public boolean gameloop(){
+		
+		boolean gameloop = false;
+		
+		Scanner myObj = new Scanner(System.in);
+		
+		System.out.printf("\n Enter 'New' for new Game, 'End' to exit the game or 'Undo' to undo your last move\n");
+			String command = myObj.nextLine();
+			System.out.printf("\n");
+			command = command.toUpperCase();
+			switch (command) {
+				case "NEW":
+					gameloop = true;
+					break;
+				case "END":
+					gameloop = false;
+					break;
+				case "UNDO":
+					// pop();
+					break;
+				default:
+					gameloop();
+					break;
+			}
+		
+		return gameloop;
+	}
 
 	/**
 	 * @return the result of the game ("nobodyV" = nobody has won the game, "Player
@@ -61,8 +90,8 @@ public class GameLogic {
 	public String checkVertical() {
 		for (Player p : ps) {
 			for (int i = 0; i < 3; i++) {
-				if (f[0 + i].getValue() == p.getSymbol() && f[3 + i].getValue() == p.getSymbol()
-						&& f[6 + i].getValue() == p.getSymbol()) {
+				if (fs.get(0 + i).getValue() == p.getSymbol() && fs.get(3 + i).getValue() == p.getSymbol()
+						&& fs.get(6 + i).getValue() == p.getSymbol()) {
 					return "Player " + p.getNumber() + " won";
 				}
 			}
@@ -81,8 +110,8 @@ public class GameLogic {
 	public String checkHorizontal() {
 		for (Player p : ps) {
 			for (int i = 0; i < 9; i += 3) {
-				if (f[0 + i].getValue() == p.getSymbol() && f[1 + i].getValue() == p.getSymbol()
-						&& f[2 + i].getValue() == p.getSymbol()) {
+				if (fs.get(0 + i).getValue() == p.getSymbol() && fs.get(1 + i).getValue() == p.getSymbol()
+						&& fs.get(2 + i).getValue() == p.getSymbol()) {
 					return "Player " + p.getNumber() + " won";
 				}
 			}
@@ -100,12 +129,12 @@ public class GameLogic {
 	 */
 	public String checkDiagonal() {
 		for (Player p : ps) {
-			if (f[0].getValue() == p.getSymbol() && f[4].getValue() == p.getSymbol()
-					&& f[8].getValue() == p.getSymbol()) {
+			if (fs.get(0 ).getValue() == p.getSymbol() && fs.get(4).getValue() == p.getSymbol()
+					&& fs.get(8).getValue() == p.getSymbol()) {
 				return "Player " + p.getNumber() + " won";
 			}
-			if (f[2].getValue() == p.getSymbol() && f[4].getValue() == p.getSymbol()
-					&& f[6].getValue() == p.getSymbol()) {
+			if (fs.get(02).getValue() == p.getSymbol() && fs.get(4).getValue() == p.getSymbol()
+					&& fs.get(6).getValue() == p.getSymbol()) {
 				return "Player " + p.getNumber() + " won";
 			}
 		}

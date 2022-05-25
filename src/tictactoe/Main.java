@@ -16,7 +16,7 @@ public class Main {
 	// Methods
 
 	/*
-	 * Todo: Game over variabel neustart einfügen visibilität
+	 * Todo: Game over variable neustart einfügen visibilität
 	 */
 
 	/**
@@ -28,8 +28,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		Scanner myObj = new Scanner(System.in);
-		boolean gameloop = true;
+		boolean gameloop = false;
 
 		do {
 
@@ -40,8 +39,9 @@ public class Main {
 			Control ctrl = new Control();
 			GameLogic gl;
 			Timer timer = new Timer();
-			History history = new History();
-			history.push(board.createMemento());
+			// History history = new History();
+			// history.push(board.createMemento());
+			// history.push(board.createMemento());
 			boolean gameover = false;
 
 			timer.startTime();
@@ -52,7 +52,9 @@ public class Main {
 
 					p[i].startTime();
 					board = gl.playerMoves(board, p[i], ctrl);
+					// history.push(board.createMemento());
 					p[i].stopTime();
+
 					// board.restore(history.pop());
 
 					if (gl.checkVertical() != "nobodyV" || gl.checkHorizontal() != "nobodyH"
@@ -68,22 +70,7 @@ public class Main {
 
 			timer.stopTime(true);
 
-			System.out.printf("\n Enter 'New' for new Game, 'End' to exit the game or 'Undo' to undo your last move\n");
-			String command = myObj.nextLine();
-			System.out.printf("\n");
-			command.toUpperCase();
-			switch (command) {
-			case "NEW":
-				gameloop = true;
-				break;
-			case "END":
-				gameloop = false;
-				break;
-			case "UNDO":
-				// undo;
-				gameover = false;
-				break;
-			}
+			gameloop = gl.gameloop();
 
 		} while (gameloop);
 

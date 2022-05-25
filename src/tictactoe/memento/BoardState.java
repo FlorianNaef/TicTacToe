@@ -1,5 +1,9 @@
 package tictactoe.memento;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import tictactoe.Board;
 import tictactoe.Field;
 
 /**
@@ -10,28 +14,41 @@ import tictactoe.Field;
  */
 public class BoardState {
 	// Attributes
-	private Field[] fields;
+	private ArrayList<Field> fields = new ArrayList<Field>();
 
 	// Constructor
 	/**
 	 * @param fields adds fields to this state
 	 */
-	public BoardState(Field[] fields) {
-		this.fields = fields;
+	public BoardState(Board board) {
+		copyField(board.getFieldsL());
+		
+	}
+
+	public ArrayList<Field> copyField(ArrayList<Field> f) {
+		final ArrayList<Field> copy = new ArrayList<Field>();
+		Iterator<Field> iterate = f.iterator();
+		while (iterate.hasNext()) {
+			copy.add(iterate.next());
+		}
+		
+		return copy;
 	}
 
 	// Getters and Setters
 	/**
 	 * @return the fields, which we can then use to get our old state of our board
 	 */
-	public Field[] getFields() {
+	public ArrayList<Field> getFields() {
 		return fields;
 	}
 
 	/**
 	 * @param fields
 	 */
-	public void setFields(Field[] fields) {
+	public void setFields(ArrayList<Field> fields) {
 		this.fields = fields;
 	}
+
+
 }

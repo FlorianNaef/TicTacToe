@@ -32,10 +32,10 @@ class BoardTest {
 
 	@Test
 	void makeMove1() {
-		b.makemove("A0", p[1]);
+		b.makemove("A0", p[0]);
 		Field f = new Field();
 		f = b.getField(0);
-		assertEquals("O", f.getValue());
+		assertEquals("X", f.getValue());
 	}
 
 }

@@ -22,6 +22,7 @@ public class History {
 	 */
 	public void push(BoardState state) {
 		states.add(state);
+		System.out.printf("Pushing\n");
 	}
 
 	/**
@@ -30,12 +31,12 @@ public class History {
 	 *         This methods goes back a state and returns it.
 	 */
 	public BoardState pop() {
-		int lastIndex;
-		BoardState lastState;
-		lastIndex = states.size() - 1;
-		lastState = states.get(lastIndex);
-		states.remove(lastState);
-		System.out.printf("popo '%s'", lastIndex);
+		int lastIndex = states.size() - 1;
+		BoardState lastState = states.get(lastIndex);
+
+		if (lastIndex >= 0) {
+			states.remove(lastState);
+		}
 		return lastState;
 	}
 }

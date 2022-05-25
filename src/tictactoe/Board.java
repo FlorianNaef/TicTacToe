@@ -1,5 +1,8 @@
 package tictactoe;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import tictactoe.memento.BoardState;
 
 /**
@@ -14,6 +17,7 @@ import tictactoe.memento.BoardState;
 public class Board {
 	// Attributes
 	private Field[] fields;
+	private ArrayList<Field> fs = new ArrayList<Field>();
 
 	// Constructor
 	/**
@@ -23,7 +27,7 @@ public class Board {
 	public Board() {
 		fields = new Field[9];
 		for (int i = 0; i <= 8; i++) {
-			fields[i] = new Field();
+			fs.add(new Field());
 		}
 	}
 
@@ -33,6 +37,14 @@ public class Board {
 	 */
 	public Field[] getFields() {
 		return fields;
+	}
+
+	public ArrayList<Field> getFieldsL() {
+		return this.fs;
+	}
+
+	public Field getFieldsL(int i) {
+		return this.fs.get(i);
 	}
 
 	/**
@@ -50,6 +62,10 @@ public class Board {
 		this.fields[i] = f;
 	}
 
+	public void setFieldsL(ArrayList<Field> al) {
+		this.fs = al;
+	}
+
 	// Methods
 	/**
 	 * @param where indicates in which field a value should be placed in
@@ -63,23 +79,23 @@ public class Board {
 
 		switch (where) {
 		case "A0":
-			return fields[0].setUnsetValue(p.getSymbol());
+			return fs.get(0).setUnsetValue(p.getSymbol());
 		case "B0":
-			return fields[1].setUnsetValue(p.getSymbol());
+			return fs.get(1).setUnsetValue(p.getSymbol());
 		case "C0":
-			return fields[2].setUnsetValue(p.getSymbol());
+			return fs.get(2).setUnsetValue(p.getSymbol());
 		case "A1":
-			return fields[3].setUnsetValue(p.getSymbol());
+			return fs.get(3).setUnsetValue(p.getSymbol());
 		case "B1":
-			return fields[4].setUnsetValue(p.getSymbol());
+			return fs.get(4).setUnsetValue(p.getSymbol());
 		case "C1":
-			return fields[5].setUnsetValue(p.getSymbol());
+			return fs.get(5).setUnsetValue(p.getSymbol());
 		case "A2":
-			return fields[6].setUnsetValue(p.getSymbol());
+			return fs.get(6).setUnsetValue(p.getSymbol());
 		case "B2":
-			return fields[7].setUnsetValue(p.getSymbol());
+			return fs.get(7).setUnsetValue(p.getSymbol());
 		case "C2":
-			return fields[8].setUnsetValue(p.getSymbol());
+			return fs.get(8).setUnsetValue(p.getSymbol());
 
 		default:
 			System.out.printf("Try again with a valid value\n");
@@ -94,11 +110,11 @@ public class Board {
 	 */
 	public void printBoard(Player p) {
 		System.out.printf("  A   B   C \n");
-		System.out.printf("0 %s | %s | %s \n", fields[0], fields[1], fields[2]);
+		System.out.printf("0 %s | %s | %s \n", fs.get(0), fs.get(1), fs.get(2));
 		System.out.printf(" -- + - + -- \n");
-		System.out.printf("1 %s | %s | %s \n", fields[3], fields[4], fields[5]);
+		System.out.printf("1 %s | %s | %s \n", fs.get(3), fs.get(4), fs.get(5));
 		System.out.printf(" -- + - + -- \n");
-		System.out.printf("2 %s | %s | %s \n", fields[6], fields[7], fields[8]);
+		System.out.printf("2 %s | %s | %s \n", fs.get(6), fs.get(7), fs.get(8));
 		System.out.printf(" -- + - + -- \n");
 		System.out.printf("\nSpieler %s | %s\n\n", p.getNumber(), p.getSymbol());
 	}
@@ -107,13 +123,24 @@ public class Board {
 	 * @return the current state of the board
 	 */
 	public BoardState createMemento() {
-		return new BoardState(this.fields);
+		System.out.printf("Create Memento \n");
+		return new BoardState(this);
 	}
 
 	/**
 	 * @param state uses the state to jump back (undo)
 	 */
 	public void restore(BoardState state) {
-		this.fields = state.getFields();
+
+		fs = null;
+		fs = new ArrayList<Field>();
+		Iterator<Field> iterate = state.getFields().iterator();
+		//while (iterate.hasNext()) {
+		//	fs.add(iterate.next());
+		//}
+		for (int i = 0; i < 9; i++) {
+			fs.add(iterate.next());
+		}
 	}
+
 }
